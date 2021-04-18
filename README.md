@@ -13,7 +13,6 @@ This repository provides the means to train and test all the models presented in
 1. Code to train the models with and without the teacher (asymmetric and symmetric).
 1. Code to do symmetric and asymmetric testing on rOxford and rParis datasets.
 1. Best pre-trainend models (including whitening).
-1. Features from the teacher models.
 
 ### Dependencies
 
@@ -41,8 +40,6 @@ python main.py [-h] [--training-dataset DATASET] [--directory EXPORT_DIR] [--no-
                   
 ```
 
-Most of the above parameters are used in the same way as in [CNN Image Retrieval in PyTorch](https://github.com/filipradenovic/cnnimageretrieval-pytorch). Here mostly new and modfied parameters are discussed.
-
 
 To perform a symmetric test of the model that is already trained:
 ```bash
@@ -53,16 +50,16 @@ python test.py [-h] (--network-path NETWORK | --network-offtheshelf NETWORK)
 For the asymmetric testing: 
 
 ```bash
-python test_asym.py [-h] (--network-path NETWORK | --network-offtheshelf NETWORK)
+python test.py [-h] (--network-path NETWORK | --network-offtheshelf NETWORK)
                [--datasets DATASETS] [--image-size N] [--multiscale MULTISCALE] 
-               [--whitening WHITENING] [--teacher TEACHER]
+               [--whitening WHITENING] [--teacher TEACHER] [--asym]
 ```
 
 Example
 
 ```bash
 
-python test_asym.py -npath 
+python test.py -npath 
                     -d 'roxford5k,rparis6k' 
                     -ms '[1, 1/2**(1/2), 1/2]' 
                     -w 'retrieval-SfM-120k' 
