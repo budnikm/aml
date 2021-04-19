@@ -55,14 +55,15 @@ python test.py [-h] (--network-path NETWORK | --network-offtheshelf NETWORK)
                [--whitening WHITENING] [--teacher TEACHER] [--asym]
 ```
 
-Example
+Examples
+
+Perform a symmetric test with a pre-trainend model:
 
 ```bash
 
-python test.py -npath 
+python test.py -npath  mobilenet-v2-gem-contr-vgg16
                     -d 'roxford5k,rparis6k' 
                     -ms '[1, 1/2**(1/2), 1/2]' 
-                    -w 'retrieval-SfM-120k' 
 
 ```
 
