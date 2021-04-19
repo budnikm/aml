@@ -601,7 +601,7 @@ class RandomTriplet(TuplesDataset):
             qvecs = torch.zeros(net.meta['outputdim'], len(self.qidxs)).cuda()
             for i in range(len(self.qidxs)):
                 qvecs[:, i] = torch.tensor(self.feat[:,self.qidxs[i]]).float().cuda()
-            )
+            
             # extract negative pool vectors
             poolvecs = torch.zeros(net.meta['outputdim'], len(idxs2images)).cuda()
             for i in range(len(idxs2images)):
