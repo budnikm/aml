@@ -61,11 +61,14 @@ Perform a symmetric test with a pre-trained model:
 
 ```bash
 
-python test.py -npath  mobilenet-v2-gem-contr-vgg16
-               -d 'roxford5k,rparis6k' 
-               -ms '[1, 1/2**(1/2), 1/2]'
-               -w retrieval-SfM-120k
+python test.py -npath  mobilenet-v2-gem-contr-vgg16 -d 'roxford5k,rparis6k' -ms '[1, 1/2**(1/2), 1/2]' -w retrieval-SfM-120k --teacher vgg16
+```
 
+For an asymmetric test:
+
+```bash
+
+python test.py -npath  mobilenet-v2-gem-contr-vgg16 -d 'roxford5k,rparis6k' -ms '[1, 1/2**(1/2), 1/2]' -w retrieval-SfM-120k --teacher vgg16 --asym
 ```
 
 
