@@ -19,20 +19,86 @@ from lib.utils.evaluate import compute_map_and_print
 from lib.utils.general import get_data_root, htime
 
 PRETRAINED = {
-    'retrievalSfM120k-vgg16-gem'        : 'http://cmp.felk.cvut.cz/cnnimageretrieval/data/networks/retrieval-SfM-120k/retrievalSfM120k-vgg16-gem-b4dcdc6.pth',
-    'retrievalSfM120k-resnet101-gem'    : 'http://cmp.felk.cvut.cz/cnnimageretrieval/data/networks/retrieval-SfM-120k/retrievalSfM120k-resnet101-gem-b80fb85.pth',
+    'retrievalSfM120k-vgg16-gem'                : 'http://cmp.felk.cvut.cz/cnnimageretrieval/data/networks/retrieval-SfM-120k/retrievalSfM120k-vgg16-gem-b4dcdc6.pth',
+    'retrievalSfM120k-resnet101-gem'            : 'http://cmp.felk.cvut.cz/cnnimageretrieval/data/networks/retrieval-SfM-120k/retrievalSfM120k-resnet101-gem-b80fb85.pth',
     # new networks with whitening learned end-to-end
-    'rSfM120k-tl-resnet50-gem-w'        : 'http://cmp.felk.cvut.cz/cnnimageretrieval/data/networks/retrieval-SfM-120k/rSfM120k-tl-resnet50-gem-w-97bf910.pth',
-    'rSfM120k-tl-resnet101-gem-w'       : 'http://cmp.felk.cvut.cz/cnnimageretrieval/data/networks/retrieval-SfM-120k/rSfM120k-tl-resnet101-gem-w-a155e54.pth',
-    'rSfM120k-tl-resnet152-gem-w'       : 'http://cmp.felk.cvut.cz/cnnimageretrieval/data/networks/retrieval-SfM-120k/rSfM120k-tl-resnet152-gem-w-f39cada.pth',
-    'gl18-tl-resnet50-gem-w'            : 'http://cmp.felk.cvut.cz/cnnimageretrieval/data/networks/gl18/gl18-tl-resnet50-gem-w-83fdc30.pth',
-    'gl18-tl-resnet101-gem-w'           : 'http://cmp.felk.cvut.cz/cnnimageretrieval/data/networks/gl18/gl18-tl-resnet101-gem-w-a4d43db.pth',
-    'gl18-tl-resnet152-gem-w'           : 'http://cmp.felk.cvut.cz/cnnimageretrieval/data/networks/gl18/gl18-tl-resnet152-gem-w-21278d5.pth',
-    'efficientnet_b3_teacher_resnet101' : 'https://cdn-141.anonfiles.com/n764I2s0p7/a989b3ab-1606167248/efficientnet_b3_gem_contr_plus_resnet_101.pth.tar'
+    'rSfM120k-tl-resnet50-gem-w'                : 'http://cmp.felk.cvut.cz/cnnimageretrieval/data/networks/retrieval-SfM-120k/rSfM120k-tl-resnet50-gem-w-97bf910.pth',
+    'rSfM120k-tl-resnet101-gem-w'               : 'http://cmp.felk.cvut.cz/cnnimageretrieval/data/networks/retrieval-SfM-120k/rSfM120k-tl-resnet101-gem-w-a155e54.pth',
+    'rSfM120k-tl-resnet152-gem-w'               : 'http://cmp.felk.cvut.cz/cnnimageretrieval/data/networks/retrieval-SfM-120k/rSfM120k-tl-resnet152-gem-w-f39cada.pth',
+    'gl18-tl-resnet50-gem-w'                    : 'http://cmp.felk.cvut.cz/cnnimageretrieval/data/networks/gl18/gl18-tl-resnet50-gem-w-83fdc30.pth',
+    'gl18-tl-resnet101-gem-w'                   : 'http://cmp.felk.cvut.cz/cnnimageretrieval/data/networks/gl18/gl18-tl-resnet101-gem-w-a4d43db.pth',
+    'gl18-tl-resnet152-gem-w'                   : 'http://cmp.felk.cvut.cz/cnnimageretrieval/data/networks/gl18/gl18-tl-resnet152-gem-w-21278d5.pth',
+    # pretrained studnet models without teacher:
+    'efficientnet-b3-gem-contr_2048'            : 'files.inria.fr/aml/efficientnet_b3_gem_contr_2048.pth.tar',                                                           
+    'efficientnet-b3-gem-contr_512'             : 'files.inria.fr/aml/efficientnet_b3_gem_contr_512.pth.tar',
+    'mobilenet-v2-gem-contr-2048'               : 'files.inria.fr/aml/mobilenet_v2_gem_contr_2048.pth.tar',
+    'mobilenet-v2-gem-contr-512'                : 'files.inria.fr/aml/mobilenet_v2_gem_contr_512.pth.tar',
+    # pretrained studnet models with teacher:
+    'efficientnet-b3-gem-contr-plus-resnet101'  : 'files.inria.fr/aml/efficientnet_b3_gem_contr_plus_resnet101.pth.tar',
+    'efficientnet-b3-gem-contr-plus-vgg16'      : 'files.inria.fr/aml/efficientnet_b3_gem_contr_plus_vgg16.pth.tar',
+    'efficientnet-b3-gem-reg-resnet101'         : 'files.inria.fr/aml/efficientnet_b3_gem_reg_resnet101.pth.tar',
+    'efficientnet-b3-gem-reg-vgg16'             : 'files.inria.fr/aml/efficientnet_b3_gem_reg_vgg16.pthaa.tar',
+    'efficientnet-b3-gem-contr-resnet101'       : 'files.inria.fr/aml/efficientnet_b3_gem_contr_resnet101.pth.tar',
+    'efficientnet-b3-gem-contr-vgg16'           : 'files.inria.fr/aml/efficientnet_b3_gem_contr_vgg16.pth.tar',
+    'efficientnet-b3-gem-dark-resnet101'        : 'files.inria.fr/aml/efficientnet_b3_gem_dark_resnet101.pth.tar',
+    'efficientnet-b3-gem-dark-vgg16'            : 'files.inria.fr/aml/efficientnet_b3_gem_dark_vgg16.pth.tar',
+    'efficientnet-b3-gem-ms-resnet101'          : 'files.inria.fr/aml/efficientnet_b3_gem_ms_resnet101.pth.tar',
+    'efficientnet-b3-gem-ms-vgg16'              : 'files.inria.fr/aml/efficientnet_b3_gem_ms_vgg16.pth.tar',
+    'efficientnet-b3-gem-rkd-resnet101'         : 'files.inria.fr/aml/efficientnet_b3_gem_rkd_resnet101.pth.tar',
+    'efficientnet-b3-gem-rkd-vgg16'             : 'files.inria.fr/aml/efficientnet_b3_gem_rkd_vgg16.pth.tar',
+    'efficientnet-b3-gem-triplet-resnet101'     : 'files.inria.fr/aml/efficientnet_b3_gem_triplet_resnet101.pth.tar',
+    'efficientnet-b3-gem-triplet-vgg16'         : 'files.inria.fr/aml/efficientnet_b3_gem_triplet_vgg16.pth.tar',
+    'mobilenet-v2-gem-contr-plus-resnet101'     : 'files.inria.fr/aml/mobilenet_v2_gem_contr_plus_resnet101.pth.tar',
+    'mobilenet-v2-gem-contr-plus-vgg16'         : 'files.inria.fr/aml/mobilenet_v2_gem_contr_plus_vgg16.pth.tar',
+    'mobilenet-v2-gem-reg-resnet101'            : 'files.inria.fr/aml/mobilenet_v2_gem_reg_resnet101.pth.tar',
+    'mobilenet-v2-gem-reg-vgg16'                : 'files.inria.fr/aml/mobilenet_v2_gem_reg_vgg16.pth.tar',
+    'mobilenet-v2-gem-contr-resnet101'          : 'files.inria.fr/aml/mobilenet_v2_gem_contr_resnet101.pth.tar',
+    'mobilenet-v2-gem-contr-vgg16'              : 'files.inria.fr/aml/mobilenet_v2_gem_contr_vgg16.pth.tar',
+    'mobilenet-v2-gem-dark-resnet101'           : 'files.inria.fr/aml/mobilenet_v2_gem_dark_resnet101.pth.tar',
+    'mobilenet-v2-gem-dark-vgg16'               : 'files.inria.fr/aml/mobilenet_v2_gem_dark_vgg16.pth.tar',
+    'mobilenet-v2-gem-ms-resnet101'             : 'files.inria.fr/aml/mobilenet_v2_gem_ms_resnet101.pth.tar',
+    'mobilenet-v2-gem-ms-vgg16'                 : 'files.inria.fr/aml/mobilenet_v2_gem_ms_vgg16.pth.tar',
+    'mobilenet-v2-gem-rkd-resnet101'            : 'files.inria.fr/aml/mobilenet_v2_gem_rkd_resnet101.pth.tar',
+    'mobilenet-v2-gem-rkd-vgg16'                : 'files.inria.fr/aml/mobilenet_v2_gem_rkd_vgg16.pth.tar',
+    'mobilenet-v2-gem-triplet-resnet101'        : 'files.inria.fr/aml/mobilenet_v2_gem_triplet_resnet101.pth.tar',
+    'mobilenet-v2-gem-triplet-vgg16'            : 'files.inria.fr/aml/mobilenet_v2_gem_triplet_vgg16.pth.tar'
 }
 
 PRETRAINED_WHITENING = {
-    'efficientnet_b3_teacher_resnet101' : 'https://cdn-116.anonfiles.com/b518Jfsap1/ad0fc9cd-1606172574/efficientnet_b3_gem_contr_plus_resnet_101_whitening.pth'
+    # pretrained whitening for studnet models without teacher:
+    'efficientnet-b3-gem-contr_2048'            : 'files.inria.fr/aml/efficientnet_b3_gem_contr_2048_whitening.pth',                                                           
+    'efficientnet-b3-gem-contr_512'             : 'files.inria.fr/aml/efficientnet_b3_gem_contr_512_whitening.pth',
+    'mobilenet-v2-gem-contr-2048'               : 'files.inria.fr/aml/mobilenet_v2_gem_contr_2048_whitening.pth',
+    'mobilenet-v2-gem-contr-512'                : 'files.inria.fr/aml/mobilenet_v2_gem_contr_512_whitening.pth',
+    # pretrained whitening for  studnet models with teacher:
+    'efficientnet-b3-gem-contr-plus-resnet101'  : 'files.inria.fr/aml/efficientnet_b3_gem_contr_plus_resnet101_whitening.pth',
+    'efficientnet-b3-gem-contr-plus-vgg16'      : 'files.inria.fr/aml/efficientnet_b3_gem_contr_plus_vgg16_whitening.pth',
+    'efficientnet-b3-gem-reg-resnet101'         : 'files.inria.fr/aml/efficientnet_b3_gem_reg_resnet101_whitening.pth',
+    'efficientnet-b3-gem-reg-vgg16'             : 'files.inria.fr/aml/efficientnet_b3_gem_reg_vgg16_whitening.pth',
+    'efficientnet-b3-gem-contr-resnet101'       : 'files.inria.fr/aml/efficientnet_b3_gem_contr_resnet101_whitening.pth',
+    'efficientnet-b3-gem-contr-vgg16'           : 'files.inria.fr/aml/efficientnet_b3_gem_contr_vgg16_whitening.pth',
+    'efficientnet-b3-gem-dark-resnet101'        : 'files.inria.fr/aml/efficientnet_b3_gem_dark_resnet101_whitening.pth',
+    'efficientnet-b3-gem-dark-vgg16'            : 'files.inria.fr/aml/efficientnet_b3_gem_dark_vgg16_whitening.pth',
+    'efficientnet-b3-gem-ms-resnet101'          : 'files.inria.fr/aml/efficientnet_b3_gem_ms_resnet101_whitening.pth',
+    'efficientnet-b3-gem-ms-vgg16'              : 'files.inria.fr/aml/efficientnet_b3_gem_ms_vgg16_whitening.pth',
+    'efficientnet-b3-gem-rkd-resnet101'         : 'files.inria.fr/aml/efficientnet_b3_gem_rkd_resnet101_whitening.pth',
+    'efficientnet-b3-gem-rkd-vgg16'             : 'files.inria.fr/aml/efficientnet_b3_gem_rkd_vgg16_whitening.pth',
+    'efficientnet-b3-gem-triplet-resnet101'     : 'files.inria.fr/aml/efficientnet_b3_gem_triplet_resnet101_whitening.pth',
+    'efficientnet-b3-gem-triplet-vgg16'         : 'files.inria.fr/aml/efficientnet_b3_gem_triplet_vgg16_whitening.pth',
+    'mobilenet-v2-gem-contr-plus-resnet101'     : 'files.inria.fr/aml/mobilenet_v2_gem_contr_plus_resnet101_whitening.pth',
+    'mobilenet-v2-gem-contr-plus-vgg16'         : 'files.inria.fr/aml/mobilenet_v2_gem_contr_plus_vgg16_whitening.pth',
+    'mobilenet-v2-gem-reg-resnet101'            : 'files.inria.fr/aml/mobilenet_v2_gem_reg_resnet101_whitening.pth',
+    'mobilenet-v2-gem-reg-vgg16'                : 'files.inria.fr/aml/mobilenet_v2_gem_reg_vgg16_whitening.pth',
+    'mobilenet-v2-gem-contr-resnet101'          : 'files.inria.fr/aml/mobilenet_v2_gem_contr_resnet101_whitening.pth',
+    'mobilenet-v2-gem-contr-vgg16'              : 'files.inria.fr/aml/mobilenet_v2_gem_contr_vgg16_whitening.pth',
+    'mobilenet-v2-gem-dark-resnet101'           : 'files.inria.fr/aml/mobilenet_v2_gem_dark_resnet101_whitening.pth',
+    'mobilenet-v2-gem-dark-vgg16'               : 'files.inria.fr/aml/mobilenet_v2_gem_dark_vgg16_whitening.pth',
+    'mobilenet-v2-gem-ms-resnet101'             : 'files.inria.fr/aml/mobilenet_v2_gem_ms_resnet101_whitening.pth',
+    'mobilenet-v2-gem-ms-vgg16'                 : 'files.inria.fr/aml/mobilenet_v2_gem_ms_vgg16_whitening.pth',
+    'mobilenet-v2-gem-rkd-resnet101'            : 'files.inria.fr/aml/mobilenet_v2_gem_rkd_resnet101_whitening.pth',
+    'mobilenet-v2-gem-rkd-vgg16'                : 'files.inria.fr/aml/mobilenet_v2_gem_rkd_vgg16_whitening.pth',
+    'mobilenet-v2-gem-triplet-resnet101'        : 'files.inria.fr/aml/mobilenet_v2_gem_triplet_resnet101_whitening.pth',
+    'mobilenet-v2-gem-triplet-vgg16'            : 'files.inria.fr/aml/mobilenet_v2_gem_triplet_vgg16_whitening.pth'
 }
 
 datasets_names = ['oxford5k', 'paris6k', 'roxford5k', 'rparis6k', 'retrieval-SfM-120k', 'instre']
