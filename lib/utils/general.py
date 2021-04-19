@@ -6,9 +6,8 @@ def get_root():
 
 
 def get_data_root():
-    #return os.path.join(get_root(), 'data')
-    return '/nfs/nas4/mbudnik/dataset_descs/data/datasets'
-
+    return os.path.join(get_root(), 'data')
+    
 
 def htime(c):
     c = round(c)

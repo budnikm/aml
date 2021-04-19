@@ -55,7 +55,7 @@ python test.py [-h] (--network-path NETWORK | --network-offtheshelf NETWORK)
                [--whitening WHITENING] [--teacher TEACHER] [--asym]
 ```
 
-Examples
+Examples:
 
 Perform a symmetric test with a pre-trained model:
 
