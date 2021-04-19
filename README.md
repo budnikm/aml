@@ -57,13 +57,14 @@ python test.py [-h] (--network-path NETWORK | --network-offtheshelf NETWORK)
 
 Examples
 
-Perform a symmetric test with a pre-trainend model:
+Perform a symmetric test with a pre-trained model:
 
 ```bash
 
 python test.py -npath  mobilenet-v2-gem-contr-vgg16
-                    -d 'roxford5k,rparis6k' 
-                    -ms '[1, 1/2**(1/2), 1/2]' 
+               -d 'roxford5k,rparis6k' 
+               -ms '[1, 1/2**(1/2), 1/2]'
+               -w retrieval-SfM-120k
 
 ```
 

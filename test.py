@@ -148,10 +148,10 @@ def main():
 
     # check if test dataset are downloaded
     # and download if they are not
+    data_root = get_data_root()
     #download_train(get_data_root())
-    download_test(get_data_root())
-    #data_path = '/nfs/nas4/mbudnik/dataset_descs/data/datasets/test/'
-    model_path = '/nfs/nas4/mbudnik/dataset_descs/feature_translation/model'
+    download_test(data_root)
+    model_path = os.path.join(data_root, 'model')
     # setting up the visible GPU
     os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu_id
     if args.asym:
@@ -279,7 +279,10 @@ def main():
         else:
             # if we evaluate networks from path we should save/load whitening
             # not to compute it every time
-            if args.network_path is not None:
+            
+            if args.network_path is not None and args.network_path in PRETRAINED_WHITENING:
+                whiten_fn = args.network_path.split('.')[0] + '_whitening.pth'
+            elif args.network_path is not None:
                 whiten_fn = args.network_path + '_{}_whiten'.format(args.whitening)
                 if len(ms) > 1:
                     whiten_fn += '_ms'
