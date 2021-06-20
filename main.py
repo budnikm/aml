@@ -110,12 +110,6 @@ def main():
 
     # move network to gpu
     model.cuda()
-    if args.teacher == 'resnet101':
-        args.feat_path = '/nfs/nas4/mbudnik/dataset_descs/data/features/retrieval-sfm-120k_retrievalSfM120k-resnet101-gem.npy'
-        args.feat_val_path = '/nfs/nas4/mbudnik/dataset_descs/data/features/retrieval-SfM-30k_retrievalSfM120k-resnet101-gem.npy'
-    else:
-        args.feat_path = '/nfs/nas4/mbudnik/dataset_descs/data/features/retrieval-sfm-120k_retrievalSfM120k-vgg16-gem.npy'
-        args.feat_val_path = '/nfs/nas4/mbudnik/dataset_descs/data/features/retrieval-SfM-30k_retrievalSfM120k-vgg16-gem.npy'
     
     # define loss function (criterion) and optimizer
     if args.loss == 'contrastive':
