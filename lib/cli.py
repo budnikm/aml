@@ -105,7 +105,10 @@ def create_parser():
                             ' (default: vgg16)')
     parser.add_argument('--sym', dest='sym', action='store_true',
                         help='symmetric training')
-
+    parser.add_argument('--feat-path', metavar='FEAT',
+                        help='Path to the extracted features from the teacher for training')
+    parser.add_argument('--feat-path-val', metavar='FEATVAL',
+                        help='Path to the extracted features from the teacher for validation')
     parser.add_argument('--pos-num', '-pn', default=3, type=int, metavar='N',
                         help='number of positive images per train/val tuple (default: 5)')
 
