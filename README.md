@@ -39,7 +39,11 @@ python main.py [-h] [--training-dataset DATASET] [--directory EXPORT_DIR] [--no-
                   [--resume FILENAME] [--comment COMMENT] 
                   
 ```
-
+Most parameters are the same as in [CNN Image Retrieval in PyTorch](https://github.com/filipradenovic/cnnimageretrieval-pytorch). Here, we describe parameters added or modified in this work, namely:  
+--arch - architecture of the model to be trained, in our case the student.  
+--mode - is the training mode, which determines how the dataset is handled, e.g. are the tuples constructed randomly or with mining; which examples are coming from the teacher vs student, etc. So for example while the --loss is set to 'contrastive', 'ts' enables standard student-teacher training (includes mining), 'ts_self' trains using the Contr+ approach, 'reg' uses the regression. When using 'rand' or 'reg' no mining is used. With 'std' it follows the original training protocol from [here](https://github.com/filipradenovic/cnnimageretrieval-pytorch) (the teacher model is not used).  
+--teacher - the model of the teacher(vgg16 or resnet101), note that this param makes the last layer of the student match that of the teacher. Therefore, this can be used even in a standard symmetric training.  
+--sym - a flag that indicates if the training should be symmetric or asymmetric.  
 
 To perform a symmetric test of the model that is already trained:
 ```bash
@@ -71,6 +75,7 @@ For an asymmetric test:
 python test.py -npath  mobilenet-v2-gem-contr-vgg16 -d 'roxford5k,rparis6k' -ms '[1, 1/2**(1/2), 1/2]' -w retrieval-SfM-120k --teacher vgg16 --asym
 ```
 
+If you are interested in just the trained models, you can find the links to them in the test.py file. 
 
 ### Acknowledgements
 
