@@ -107,7 +107,7 @@ def create_parser():
                         help='symmetric training')
     parser.add_argument('--feat-path', metavar='FEAT',
                         help='Path to the extracted features from the teacher for training')
-    parser.add_argument('--feat-path-val', metavar='FEATVAL',
+    parser.add_argument('--feat-val-path', metavar='FEATVAL',
                         help='Path to the extracted features from the teacher for validation')
     parser.add_argument('--pos-num', '-pn', default=3, type=int, metavar='N',
                         help='number of positive images per train/val tuple (default: 5)')
