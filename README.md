@@ -32,6 +32,7 @@ python main.py [-h] [--training-dataset DATASET] [--directory EXPORT_DIR] [--no-
                   [--local-whitening] [--regional] [--whitening]
                   [--not-pretrained] [--loss LOSS] [--loss-margin LM] 
                   [--mode MODE] [--teacher TEACHER] [--sym]
+                  [--feat-path FEAT] [--feat-val-path FEATVAL]
                   [--image-size N] [--neg-num N] [--query-size N]
                   [--pool-size N] [--gpu-id N] [--workers N] [--epochs N]
                   [--batch-size N] [--optimizer OPTIMIZER] [--lr LR]
@@ -44,6 +45,7 @@ Most parameters are the same as in [CNN Image Retrieval in PyTorch](https://gith
 --mode - is the training mode, which determines how the dataset is handled, e.g. are the tuples constructed randomly or with mining; which examples are coming from the teacher vs student, etc. So for example while the --loss is set to 'contrastive', 'ts' enables standard student-teacher training (includes mining), 'ts_self' trains using the Contr+ approach, 'reg' uses the regression. When using 'rand' or 'reg' no mining is used. With 'std' it follows the original training protocol from [here](https://github.com/filipradenovic/cnnimageretrieval-pytorch) (the teacher model is not used).  
 --teacher - the model of the teacher(vgg16 or resnet101), note that this param makes the last layer of the student match that of the teacher. Therefore, this can be used even in a standard symmetric training.  
 --sym - a flag that indicates if the training should be symmetric or asymmetric.  
+--feat-path and --feat-val-path - a path to the extracted teacher features used to train the student. The features can be extracted using the extract_features.py script.  
 
 To perform a symmetric test of the model that is already trained:
 ```bash
